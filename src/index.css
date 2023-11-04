@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    /* We can write vanilla css */
+    /* background-color: aqua; */
+    /* #FAE6B1 */
+    /* #FFA101 */
+    /* #B3DEE5 */
+    /* #31525B */
+    /* #202225 */
+    /* #2f3136 */
+    /* #3e8ed0 */
+    /* #485fc7 */
+    /* #00d1b2 */
+    /* using @apply we can access tailwind properties, and we can chain them */
+    /* @apply bg-slate-400 text-white font-bold; */
+  }
+
+  body {
+    background-color: #202225;
+    color: white;
+    font-family: "Poppins", sans-serif;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  main {
+    height: 100vh;
+  }
+}
