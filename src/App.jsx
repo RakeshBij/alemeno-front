@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
-  { path: "/description", element: <Description /> },
+  { path: "/description/:id", element: <Description /> },
   {
     path: "/dashboard",
     element: (
@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       {/* <p className="bg-green-400 text-white border-4 border-yellow-600">
-        {import.meta.env.VITE_SARA}
+        {import.meta.env.VITE_API_URI}
       </p> */}
 
       {/* <h1 className="text-3xl">Title 1</h1>

@@ -1,15 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const token = Cookies.get("token");
 
   return (
     <>
       <nav className="container bg-lightGrey mx-auto lg:p-3  p-1 ">
         <div className="flex justify-between content-center items-center">
-          <div className="text-myYellow lg:text-xl uppercase font-bold text-lg">
+          <div
+            className="text-myYellow lg:text-xl uppercase font-bold text-lg cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             Rakesh's Acadmey
           </div>
           <div>

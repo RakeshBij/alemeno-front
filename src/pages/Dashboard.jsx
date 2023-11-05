@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
+import { getMyCourse } from "../requests/request";
 
 const Dashboard = ({ enrolledCourses }) => {
   const navigate = useNavigate();
-  const [completedCourses, setCompletedCourses] = useState([]);
-  const courseDetails = {
-    course: "Sample Course",
-    instructor: "John Doe",
-    enrolled: true,
-    completed: false,
-  };
+  const [loading, setLoading] = useState(true);
+
+  const [myCourses, setMyCourses] = useState([]);
+
+  async function getAllCourses() {
+    const { message, err, data } = await getMyCourse();
+    console.log("asdfasdf");
+    setMyCourses(data);
+    setLoading(false);
+  }
+
+  getAllCourses();
 
   const logout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
+    Cookies.remove("token");
+    localStorage.clear();
+    window.location.reload();
   };
 
   return (
@@ -52,18 +60,26 @@ const Dashboard = ({ enrolledCourses }) => {
             </svg>
           </div>
         </div>
-        <h1 className="text-2xl font-semibold mt-4 mb-4 px-5 sm:px-4 container mx-auto">
-          Courses Enrolled
-        </h1>
-        <div className="container mt-4 mx-auto flex justify-center flex-wrap gap-4 mb-4">
-          <Card props={courseDetails} />
-          <Card props={courseDetails} />
-          <Card props={courseDetails} />
-          <Card props={courseDetails} />
-          <Card props={courseDetails} />
-          <Card props={courseDetails} />
-          <Card props={courseDetails} />
-        </div>
+        {loading ? (
+          <div className="text-center mt-4">Loading...</div>
+        ) : (
+          <>
+            <h1 className="text-2xl font-semibold mt-4 mb-4 px-5 sm:px-4 container mx-auto">
+              Courses Enrolled
+            </h1>
+            {!myCourses ? (
+              <h1 className="text-2xl font-semibold mt-4 mb-4 px-5 text-center sm:px-4 container mx-auto">
+                Not enrolled in any Course
+              </h1>
+            ) : (
+              <div className="container mt-4 mx-auto flex justify-center flex-wrap gap-4 mb-4">
+                {myCourses.map((course, index) => (
+                  <Card key={index} props={course} />
+                ))}
+              </div>
+            )}
+          </>
+        )}
       </div>
     </>
   );

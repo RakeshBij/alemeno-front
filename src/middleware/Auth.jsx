@@ -1,19 +1,12 @@
 import { Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export const AuthorizeUser = ({ children }) => {
-  const token = localStorage.getItem("token");
+  const token = Cookies.get("token");
   console.log(token);
-  // if (!token) {
-  //   return <Navigate to={"/"} replace={true}></Navigate>;
-  // }
-
-  return children;
-};
-
-export const ProtectedRoutes = ({ children }) => {
-  // get the username from redux
-
-  // if no username then return to home page
+  if (!token) {
+    return <Navigate to={"/"} replace={true}></Navigate>;
+  }
 
   return children;
 };

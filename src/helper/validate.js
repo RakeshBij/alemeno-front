@@ -9,6 +9,7 @@ function usernameVerify(error = {}, values) {
   } else if (values.username.includes(" ")) {
     error.username = toast.error("Invalid Username...!");
   }
+  console.log(error);
   return error;
 }
 
@@ -65,9 +66,11 @@ export async function loginValidate(payload) {
 }
 
 export async function signupValidate(payload) {
-  const errors = usernameVerify({}, payload);
-  passwordVerify(errors, payload);
-  emailVerify(errors, payload);
-
+  // const errors = usernameVerify({}, payload);
+  // passwordVerify(errors, payload);
+  // emailVerify(errors, payload);
+  // console.log("heer");
+  // console.log(errors);
+  // console.log(payload);
   return errors;
 }

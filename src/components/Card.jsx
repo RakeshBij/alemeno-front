@@ -1,14 +1,27 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const Card = ({ props }) => {
+  const navigate = useNavigate();
+  const { _id } = props;
+
   return (
     <>
-      <div className="bg-lightGrey rounded-lg mx-2 flex flex-col w-[300px] gap-2 cursor-pointer mb-2 transition duration-300 ease-in-out hover:shadow-2xl hover:scale-105">
+      <div
+        className="bg-lightGrey rounded-lg mx-2 flex flex-col w-[300px] gap-2 cursor-pointer mb-2 transition duration-300 ease-in-out hover:shadow-2xl hover:scale-105"
+        onClick={() => {
+          navigate(`/description/:${_id}`);
+        }}
+      >
+        {/* <Link to={`/description/:${_id}`}>MOve</Link> */}
         <div>
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6oiesyKVGKXyQ_MNyxAk4i7nEgi8QYZffHw&usqp=CAU"
+            // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6oiesyKVGKXyQ_MNyxAk4i7nEgi8QYZffHw&usqp=CAU"
+            src={props.thumbnail}
             alt=""
-            className="rounded-lg w-auto h-[200px]"
+            className="rounded-lg w-auto"
           />
           {props.enrolled ? (
             <div className="w-32 bg-blue-200 h-1 rounded-full ">
@@ -24,12 +37,12 @@ const Card = ({ props }) => {
           )}
         </div>
         <div className="pl-2 pb-1">
-          <div className="text-2xl font-bold">{props.course}</div>
+          <div className="text-2xl font-bold">{props.name}</div>
           <div className="text-[#cccccc] text-sm ">{props.instructor}</div>
         </div>
         {!props.enrolled ? (
           <button className="border-2 transition duration-300 ease-in-out border-myYellow hover:border-[#e69101] hover:bg-[#e69101] p-1 lg:px-4 rounded-lg cursor-pointer text-sm px-2 font-bold">
-            Enroll Now
+            View Details
           </button>
         ) : (
           <>
