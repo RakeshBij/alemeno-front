@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
@@ -13,12 +13,14 @@ const Dashboard = ({ enrolledCourses }) => {
 
   async function getAllCourses() {
     const { message, err, data } = await getMyCourse();
-    console.log("asdfasdf");
-    setMyCourses(data);
+
+    setMyCourses(data.enrolledCourses);
     setLoading(false);
   }
 
-  getAllCourses();
+  useEffect(() => {
+    getAllCourses();
+  }, []);
 
   const logout = () => {
     Cookies.remove("token");
@@ -74,7 +76,12 @@ const Dashboard = ({ enrolledCourses }) => {
             ) : (
               <div className="container mt-4 mx-auto flex justify-center flex-wrap gap-4 mb-4">
                 {myCourses.map((course, index) => (
-                  <Card key={index} props={course} />
+                  <Card
+                    key={index}
+                    props={course.course}
+                    enrollementId={course._id}
+                    getAllCourses={getAllCourses}
+                  />
                 ))}
               </div>
             )}

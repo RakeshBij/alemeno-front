@@ -52,9 +52,16 @@ const Description = () => {
       filteredCourse[0].enrollmentStatus === "progress"
     ) {
       console.log(courseId);
-      enroll(courseId);
+      enroll({
+        courseId: courseId,
+      });
+      navigate("/dashboard");
     }
   };
+
+  // {
+  //     "courseId":"6547c997e1a24bb7874757e9"
+  // }
 
   return (
     <>

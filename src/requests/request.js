@@ -57,6 +57,7 @@ export async function enrollIntoCourse(payload) {
   let err = "";
   try {
     const token = Cookies.get("token");
+    console.log(payload);
     const response = await axios.post(`${apiUrl}/enroll`, payload, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -76,13 +77,36 @@ export async function getMyCourse() {
   let data = {};
   try {
     const token = Cookies.get("token");
-    const response = await axios.get(`${apiUrl}/enroll/mine`, payload, {
+    const response = await axios.get(`${apiUrl}/enroll/mine`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data = response.data;
+    data = response.data;
     message = "Enrolled courses";
+  } catch (error) {
+    err = error.response.data.message;
+  }
+  return { message, err, data };
+}
+
+export async function markComplete(payload) {
+  let message = "";
+  let err = "";
+  let data = {};
+  try {
+    const token = Cookies.get("token");
+    const response = await axios.patch(
+      `${apiUrl}/courses/update-status`,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    data = response.data;
+    message = "Updated";
   } catch (error) {
     err = error.response.data.message;
   }

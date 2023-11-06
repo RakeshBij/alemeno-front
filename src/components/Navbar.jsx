@@ -6,6 +6,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const token = Cookies.get("token");
 
+  const capitalizeFirstLetter = (text) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  };
+
   return (
     <>
       <nav className="container bg-lightGrey mx-auto lg:p-3  p-1 ">
@@ -39,8 +43,15 @@ const Navbar = () => {
                 </button>
               </div>
             ) : (
-              <div className="border-4 transition duration-300 ease-in-out border-myYellow hover:bg-[#e69101] p-1 px-3 cursor-pointer rounded-2xl font-bold">
-                Rakesh
+              <div
+                className="border-4 transition duration-300 ease-in-out border-myYellow hover:bg-[#e69101] p-1 px-3 cursor-pointer rounded-2xl font-bold"
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+              >
+                {capitalizeFirstLetter(
+                  JSON.parse(localStorage.getItem("user")).username
+                )}
               </div>
             )}
           </div>
