@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const apiUrl = import.meta.env.VITE_API_URI;
+const apiUrl = "https://alamino-back.onrender.com/api";
 
 export const signup = async function (payload) {
   let message = "";
@@ -25,6 +25,7 @@ export const login = async function (payload) {
   let err = "";
   try {
     const response = await axios.post(`${apiUrl}/auth/login`, payload);
+    console.log(apiUrl);
     const data = response.data;
     const token = data.token;
     const user = data.user;

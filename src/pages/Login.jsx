@@ -11,11 +11,12 @@ const Login = () => {
   const navigate = useNavigate();
 
   const formik = useFormik({
-    initialValues: { username: "", password: "" },
+    initialValues: { email: "", password: "" },
     // validate: loginValidate,
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: async (payload) => {
+      console.log(payload);
       const { message, err } = await login(payload);
       console.log(message);
       if (message) {
@@ -45,18 +46,18 @@ const Login = () => {
           >
             <div>
               <label
-                htmlFor="text"
+                htmlFor="email"
                 className="block text-sm font-medium leading-6 "
               >
-                Username
+                Email
               </label>
               <div className="mt-2">
                 <input
-                  {...formik.getFieldProps("username")}
-                  id="username"
-                  name="username"
-                  type="text"
-                  autoComplete="username"
+                  {...formik.getFieldProps("email")}
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
                   required
                   className="block w-full p-1 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
