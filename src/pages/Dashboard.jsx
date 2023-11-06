@@ -25,7 +25,7 @@ const Dashboard = ({ enrolledCourses }) => {
   const logout = () => {
     Cookies.remove("token");
     localStorage.clear();
-    window.location.reload();
+    navigate("/");
   };
 
   return (

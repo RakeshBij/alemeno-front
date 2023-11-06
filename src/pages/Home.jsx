@@ -8,7 +8,6 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
-  const coursesPerPage = 10;
   const payload = { limit: 10, page: 1, search: "" };
 
   useEffect(() => {
