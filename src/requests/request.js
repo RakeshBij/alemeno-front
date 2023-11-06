@@ -25,7 +25,7 @@ export const login = async function (payload) {
   let err = "";
   try {
     const response = await axios.post(`${apiUrl}/auth/login`, payload);
-    console.log(apiUrl);
+
     const data = response.data;
     const token = data.token;
     const user = data.user;
@@ -41,7 +41,6 @@ export const login = async function (payload) {
 export const courses = async function (payload) {
   let message = "";
   let err = "";
-  console.log(payload);
   try {
     const response = await axios.post(`${apiUrl}/courses`, payload);
     const data = response.data;
@@ -57,7 +56,6 @@ export async function enrollIntoCourse(payload) {
   let err = "";
   try {
     const token = Cookies.get("token");
-    console.log(payload);
     const response = await axios.post(`${apiUrl}/enroll`, payload, {
       headers: {
         Authorization: `Bearer ${token}`,

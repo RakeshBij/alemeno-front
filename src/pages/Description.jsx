@@ -20,14 +20,13 @@ const Description = () => {
   };
 
   useEffect(() => {
-    // Fetch the list of courses when the component mounts
     const fetchData = async () => {
       const { message, err } = await courses(payload);
       if (message) {
-        setCourseData(message.courses); // Update the course data state with the fetched courses
+        setCourseData(message.courses);
         setLoading(false);
       } else if (err) {
-        console.error(err); // Handle any errors
+        console.error(err);
       }
     };
 
@@ -35,14 +34,13 @@ const Description = () => {
   }, []);
 
   const filteredCourse = courseData.filter((course) => course._id === courseId);
-  console.log(filteredCourse[0]);
 
   const enroll = async (payload) => {
     const { message, err } = await enrollIntoCourse(payload);
     if (message) {
-      setCourseData(message); // Update the course data state with the fetched courses
+      setCourseData(message);
     } else if (err) {
-      console.error(err); // Handle any errors
+      console.error(err);
     }
   };
 
@@ -51,17 +49,12 @@ const Description = () => {
       filteredCourse[0].enrollmentStatus === "open" ||
       filteredCourse[0].enrollmentStatus === "progress"
     ) {
-      console.log(courseId);
       enroll({
         courseId: courseId,
       });
       navigate("/dashboard");
     }
   };
-
-  // {
-  //     "courseId":"6547c997e1a24bb7874757e9"
-  // }
 
   return (
     <>

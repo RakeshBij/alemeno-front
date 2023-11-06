@@ -12,21 +12,18 @@ const Home = () => {
   const payload = { limit: 10, page: 1, search: "" };
 
   useEffect(() => {
-    // Fetch the list of courses when the component mounts
     const fetchData = async () => {
-      console.log(`currpage ${currentPage}`);
       const { message, err } = await courses({ ...payload, page: currentPage });
       if (message) {
-        setCourseData(message.courses); // Update the course data state with the fetched courses
+        setCourseData(message.courses);
         setLoading(false);
       } else if (err) {
-        console.error(err); // Handle any errors
+        console.error(err);
       }
     };
 
     fetchData();
   }, [currentPage]);
-  console.log(courseData);
   const handlePagination = (newPage) => {
     setCurrentPage(newPage);
   };
@@ -94,7 +91,6 @@ const Home = () => {
       </div>
       {/* List of courses */}
       {loading ? (
-        // Show a loader while data is loading
         <div className="text-center mt-4">Loading...</div>
       ) : (
         <div className="container mt-4 mx-auto flex justify-center flex-wrap gap-4 mb-4">

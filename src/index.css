@@ -8,19 +8,6 @@
   * {
     margin: 0;
     padding: 0;
-    /* We can write vanilla css */
-    /* background-color: aqua; */
-    /* #FAE6B1 */
-    /* #FFA101 */
-    /* #B3DEE5 */
-    /* #31525B */
-    /* #202225 */
-    /* #2f3136 */
-    /* #3e8ed0 */
-    /* #485fc7 */
-    /* #00d1b2 */
-    /* using @apply we can access tailwind properties, and we can chain them */
-    /* @apply bg-slate-400 text-white font-bold; */
   }
 
   body {

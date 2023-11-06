@@ -1,16 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import { pageNotFound } from "../assets/pageNotFound.jpeg";
 
 const PageNotFound = () => {
   const navigate = useNavigate();
   return (
     <>
-      {/* <img
-        src="../assets/pageNotFound.jpeg"
-        alt=""
-        className="rounded-lg w-auto h-[200px]"
-      /> */}
       <div className="grid h-[95%] place-items-center px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
           <p className="text-base font-semibold">404</p>

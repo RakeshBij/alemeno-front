@@ -1,7 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 import { markComplete } from "../requests/request";
 
 const Card = ({ props, enrollementId, getAllCourses }) => {
@@ -15,27 +13,19 @@ const Card = ({ props, enrollementId, getAllCourses }) => {
     };
     const { data, message, err } = await markComplete(payload);
     getAllCourses();
-    console.log(data);
-    console.log(message);
     console.error(err);
   };
 
   return (
     <>
       <div className="bg-lightGrey rounded-lg mx-2 flex flex-col w-[300px] gap-2 cursor-pointer mb-2 transition duration-300 ease-in-out hover:shadow-2xl hover:scale-105">
-        {/* <Link to={`/description/:${_id}`}>MOve</Link> */}
         <div
           onClick={() => {
             navigate(`/description/:${_id}`);
           }}
         >
-          <img
-            // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6oiesyKVGKXyQ_MNyxAk4i7nEgi8QYZffHw&usqp=CAU"
-            src={props.thumbnail}
-            alt=""
-            className="rounded-lg w-auto"
-          />
-          {props.enrollmentStatus !== "open" ? (
+          <img src={props.thumbnail} alt="" className="rounded-lg w-auto" />
+          {enrollementId ? (
             <div className="w-32 bg-blue-200 h-1 rounded-full ">
               <div
                 className={`h-1 rounded-full bg-myYellow`}
@@ -57,7 +47,7 @@ const Card = ({ props, enrollementId, getAllCourses }) => {
           <div className="text-2xl font-bold">{props.name}</div>
           <div className="text-[#cccccc] text-sm ">{props.instructor}</div>
         </div>
-        {props.enrollmentStatus === "open" ? (
+        {!enrollementId ? (
           <button
             className="border-2 transition duration-300 ease-in-out border-myYellow hover:border-[#e69101] hover:bg-[#e69101] p-1 lg:px-4 rounded-lg cursor-pointer text-sm px-2 font-bold"
             onClick={() => {
@@ -79,7 +69,7 @@ const Card = ({ props, enrollementId, getAllCourses }) => {
                 Mark Complete
               </button>
             ) : (
-              <div className="mt-1 pl-2 mb-4 font-semibold uppercase text-myYellow">
+              <div className="mt-1 pl-2 mb-4 font-semibold uppercase text-myYellow ">
                 Course Compelted
               </div>
             )}

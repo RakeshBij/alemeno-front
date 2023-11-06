@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { Toaster } from "react-hot-toast";
-import { loginValidate } from "../helper/validate";
 import { login } from "../requests/request";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,13 +11,11 @@ const Login = () => {
 
   const formik = useFormik({
     initialValues: { email: "", password: "" },
-    // validate: loginValidate,
+
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: async (payload) => {
-      console.log(payload);
       const { message, err } = await login(payload);
-      console.log(message);
       if (message) {
         toast.success(message);
         navigate(`/`);
